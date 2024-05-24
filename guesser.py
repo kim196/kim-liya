@@ -62,8 +62,10 @@ def guesser(images):
     if attempts > 3:
         print("Game over. The location was: ", location)
 
-# Load images       
-images = load_locations("images.txt")
+# Load images   
+image_dir = "images" 
+images_data = load_locations("images.txt")     
+images = {os.path.join(image_dir, filename): location for filename, location in images_data.items()}
 
 # Start the game
 guesser(images)
