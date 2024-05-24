@@ -59,7 +59,7 @@ def guesser(images):
             feedback = evaluate_guess(guess, location)
             print(feedback)
 
-    if attempts > 6:
+    if attempts > 3:
         print("Game over. The location was: ", location)
 
 # Load images       
