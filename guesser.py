@@ -25,9 +25,9 @@ def evaluate_guess(guess, word):
     return str + "\033[0m" 
 
 #loads the game 
-def wordle(guesses, answers):
-    print("Welcome to Wordle! You have 6 chances to guess a 5 letter word.")
-    word = random.choice(answers)
+def guesser(guesses, answers):
+    print("Welcome to CampusGueser! You have 6 chances to guess a 5 letter word.")
+    place = random.choice(answers)
 
     attempts = 1
 
@@ -37,19 +37,19 @@ def wordle(guesses, answers):
         if not is_valid_guess:
             print("Invalid word. Please enter a 5 letter english word.")
             continue
-        elif word == guess:
+        elif place == guess:
             print("Congratulations! You guessed the word.")
             break
         else:
             attempts +=1 
-            feedback = evaluate_guess(guess, word)
+            feedback = evaluate_guess(guess, place)
             print(feedback)
 
     if attempts > 6:
-        print("Game over. The word was: ", word)
+        print("Game over. The word was: ", place)
         
 guesses = load_dictionary("guesses.txt")
 answers = load_dictionary("answers.txt")
 
-wordle(guesses, answers)
+guesser(guesses, answers)
 
