@@ -2,8 +2,14 @@ import random
 import os
 from PIL import Image
 
-# Returns a dictionary where the keys are image filenames and the values are the corresponding locations
+# Returns dictionary of guesses
 def load_dictionary(file):
+    with open(file) as f:
+        words = [line.strip() for line in f]
+        return words
+
+# Returns a dictionary where the keys are image filenames and the values are the corresponding locations
+def load_locations(file):
     with open(file) as f:
         data = {}
         for line in f: 
@@ -38,9 +44,11 @@ def guesser(images):
 
     while(attempts <= 3):
         guess = input ("Enter guess #" + str(attempts) + ": ").lower()
+
+        guesses = load_dictionary("guesses.txt")
         
 
-        if not is_valid_guess(guess, "guesses.txt"):
+        if not is_valid_guess(guess, guesses):
             print("Invalid location.")
             continue
         elif guess == location:
@@ -55,7 +63,7 @@ def guesser(images):
         print("Game over. The location was: ", location)
 
 # Load images       
-images = load_dictionary("images.txt")
+images = load_locations("images.txt")
 
 # Start the game
 guesser(images)
