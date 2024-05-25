@@ -1,7 +1,7 @@
 import random
 import os
 from PIL import Image
-from flask import Flask, redirect, url_for, render_template
+from flask import Flask, url_for, render_template, request
 
 app = Flask(__name__, static_folder='images')
 
@@ -65,9 +65,17 @@ def guesser(images):
     if attempts > 3:
         print("Game over. The location was: ", location)
 
-# Load images   
+# Path to Flask folder of images   
 image_dir = app.static_folder 
-images = os.listdir(image_dir)    
+# List of images in Flask folder
+images = os.listdir(image_dir)  
+# URL to img of random location
+location_img = random.choice(images)
+# Name of random location
+location = load_locations('images.txt').get(location_img)
+
+attempts = 1
+
 
 # Default home/start page
 @app.route("/")
@@ -77,9 +85,25 @@ def home():
 # Game page
 @app.route("/start_game")
 def game():
-    random_img = random.choice(images)
-    random_img_url = url_for('static',filename=random_img)
-    return render_template("game.html", image_url=random_img_url)
+    img_url = url_for('static',filename=location_img)
+    return render_template("game.html", image_url=img_url)
+
+# Provides feedback based on answer
+@app.route("/feedback", methods=['POST'])
+def feedback( ):
+    global attempts 
+    guess = request.form['guess']
+    
+    if guess.lower() != location:
+        if attempts < 3: 
+            attempts =  attempts + 1
+            img_url = url_for('static',filename=location_img)
+            return render_template("try_again.html", image_url=img_url, num_attempts = 4 - attempts)
+        else:
+            return "GAME OVER :("
+    else: 
+        return "Congratulations! You guessed the location correctly :)"
+   
 
 if __name__ == "__main__":
     app.run()
