@@ -1,6 +1,9 @@
 import random
 import os
 from PIL import Image
+from flask import Flask, redirect, url_for, render_template
+
+app = Flask(__name__, static_folder='images')
 
 # Returns dictionary of guesses
 def load_dictionary(file):
@@ -63,10 +66,20 @@ def guesser(images):
         print("Game over. The location was: ", location)
 
 # Load images   
-image_dir = "images" 
-images_data = load_locations("images.txt")     
-images = {os.path.join(image_dir, filename): location for filename, location in images_data.items()}
+image_dir = app.static_folder 
+images = os.listdir(image_dir)    
 
-# Start the game
-guesser(images)
+# Default home/start page
+@app.route("/")
+def home():
+    return render_template("index.html")
 
+# Game page
+@app.route("/start_game")
+def game():
+    random_img = random.choice(images)
+    random_img_url = url_for('static',filename=random_img)
+    return render_template("game.html", image_url=random_img_url)
+
+if __name__ == "__main__":
+    app.run()
