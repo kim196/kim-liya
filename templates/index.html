@@ -6,24 +6,31 @@
     <title>Home page</title>
     </head>
     <style>
-        .container {
+        .img_container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 50vh;
+            
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
     </style>
     <body>
-        <div class="container">
-            <h1>Welcome to Campus Guesser!</h1>
+        <h1 style="text-align: center; margin-top: 75px;">Welcome to Campus Guesser!</h1>
+        <div class="img_container">
+            <img src="{{ map_url }}" alt="Campus Map", width=400px>
+        </div>
+        <div class ="button">
             <form action="/start_game">
-                <img src="{{ map_url }}" alt="Campus Map", width=500px>
-                <button type="submit">Start Game</button>
+                <button type="submit" >Start Game</button> 
             </form>
         </div>
-        
-        
     </body>
 
 </html>
