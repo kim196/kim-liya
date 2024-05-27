@@ -6,12 +6,20 @@
     <title>Home page</title>
     </head>
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Space out elements vertically */
+            align-items: center;
+            height: 100vh; /* 100% of the viewport height */
+            margin: 0;
+        }
+
         .img_container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 50vh;
-            
+            height: 40vh;
         }
 
         .button {
@@ -19,17 +27,34 @@
             justify-content: center;
             align-items: center;
         }
+        
+        .details{
+            text-align: center; 
+        }
+
+        h1 {
+            font-size: 50px; 
+            font-family: "Monaco"; 
+            margin-top: 150px; /* Space below the heading */
+            font-weight: bold;
+        }
 
     </style>
     <body>
-        <h1 style="text-align: center; margin-top: 75px;">Welcome to CampusGuesser!</h1>
+        <h1 style="text-align: center;">PicQuest</h1>
         <div class="img_container">
-            <img src="{{ map_url }}" alt="Campus Map", width=400px>
+            <img src="{{ logo_url }}" alt="Campus Map", width=200px style="border-radius: 10px;">
         </div>
         <div class ="button">
             <form action="/start_game">
                 <button type="submit" >Start Game</button> 
             </form>
+        </div>
+        <div class="details">
+            <p> {{ date }} </p> 
+            <p> No. 1 </p>
+            <p> Created by Liya Solomon & Kim Luu </p>
+            <p> Inspired by Wordle-New York Times </p>
         </div>
     </body>
 

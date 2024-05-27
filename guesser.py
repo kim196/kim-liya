@@ -1,12 +1,10 @@
 import random
 import os
 from flask import Flask, url_for, render_template, request
-import time
+import time 
+from datetime import datetime
 
 app = Flask(__name__, static_folder='static')
-
-# Variable to track time it took to guess answer
-start_time = None
 
 # Returns dictionary of guesses
 def load_dictionary(file):
@@ -34,13 +32,18 @@ location_img = random.choice(images)
 location = load_locations('images.txt').get(location_img)
 
 attempts = 1
+start_time = None
+
+# Getting current date
+now = datetime.now()
+date = now.date()
 
 
 # Default home/start page
 @app.route("/")
 def home():
-    map_url = url_for('static',filename=f'map/map.jpeg')
-    return render_template("index.html",  map_url = map_url)
+    logo_url = url_for('static',filename=f'logo/logo.jpeg')
+    return render_template("index.html",  logo_url = logo_url, date = date)
 
 # Game page
 @app.route("/start_game")
@@ -64,9 +67,8 @@ def feedback( ):
         else:
             return render_template('/game_over')
     else: 
-        global start_time
         elapsed_time = round(time.time() - start_time, 2)
-        return render_template("report.html", num_attempts=attempts, elapsed_time=elapsed_time)
+        return render_template("report.html", num_attempts = attempts, elapsed_time=elapsed_time)
 
 
 
