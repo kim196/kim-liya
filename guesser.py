@@ -1,9 +1,12 @@
 import random
 import os
-from PIL import Image
 from flask import Flask, url_for, render_template, request
+import time
 
 app = Flask(__name__, static_folder='static')
+
+# Variable to track time it took to guess answer
+start_time = None
 
 # Returns dictionary of guesses
 def load_dictionary(file):
@@ -42,6 +45,8 @@ def home():
 # Game page
 @app.route("/start_game")
 def game():
+    global start_time
+    start_time = time.time()
     img_url = url_for('static',filename=f'images/{location_img}')
     return render_template("game.html", image_url=img_url)
 
@@ -59,7 +64,9 @@ def feedback( ):
         else:
             return render_template('/game_over')
     else: 
-        return render_template("report.html", num_attempts = attempts)
+        global start_time
+        elapsed_time = round(time.time() - start_time, 2)
+        return render_template("report.html", num_attempts=attempts, elapsed_time=elapsed_time)
 
 
 
