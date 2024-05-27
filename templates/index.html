@@ -11,50 +11,55 @@
             flex-direction: column;
             justify-content: space-between; /* Space out elements vertically */
             align-items: center;
-            height: 100vh; /* 100% of the viewport height */
-            margin: 0;
+            background-color: #E8E8E8
         }
 
         .img_container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 40vh;
+            margin-bottom: -30px;
         }
 
         .button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin-bottom: 50px;
         }
         
         .details{
             text-align: center; 
+            font-family: "Courier New";
         }
 
         h1 {
             font-size: 50px; 
             font-family: "Monaco"; 
-            margin-top: 150px; /* Space below the heading */
-            font-weight: bold;
+            margin-top: 100px;
+            margin-bottom: 10px;
+        }
+        
+        h6{
+            font-size: 30px; 
+            font-family: "Monaco"; 
+            margin-bottom: 10px;
         }
 
     </style>
     <body>
         <h1 style="text-align: center;">PicQuest</h1>
         <div class="img_container">
-            <img src="{{ logo_url }}" alt="Campus Map", width=200px style="border-radius: 10px;">
+            <img src="{{ logo_url }}" alt="Campus Map", width=200px style="border-radius: 30px;">
         </div>
+        <h6 style="text-align: center;">Get 3 chances to guess the  <br> building on campus.</h6>
         <div class ="button">
             <form action="/start_game">
-                <button type="submit" >Start Game</button> 
+                <button type="submit" style="width: 100px; height: 30px; border-radius: 30px;">Start</button> 
             </form>
         </div>
         <div class="details">
-            <p> {{ date }} </p> 
-            <p> No. 1 </p>
-            <p> Created by Liya Solomon & Kim Luu </p>
-            <p> Inspired by Wordle-New York Times </p>
+            <p style="margin-bottom: 0px;"> {{ date }} </p> 
+            <p style="margin-bottom: 0px;"> No. 1 </p>
+            <p style="margin-bottom: 0px;"> Created by Liya Solomon & Kim Luu </p>
+            <p style="margin-bottom: 0px;"> Inspired by Wordle - The New York Times </p>
         </div>
     </body>
 
