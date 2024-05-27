@@ -57,10 +57,11 @@ def feedback( ):
             img_url = url_for('static',filename=f'images/{location_img}')
             return render_template("try_again.html", image_url=img_url, num_attempts = 4 - attempts)
         else:
-            return "GAME OVER :(  The location was: " + location
+            return render_template('/game_over')
     else: 
-        return "Congratulations! You guessed the location correctly :)"
-   
+        return render_template("report.html", num_attempts = attempts)
+
+
 
 if __name__ == "__main__":
     app.run()
