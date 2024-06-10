@@ -11,6 +11,7 @@
             flex-direction: column;
             justify-content: space-between; /* Space out elements vertically */
             align-items: center;
+            background-color: #C55050
         }
 
         .img_container {
@@ -20,26 +21,42 @@
             margin-bottom: -30px;
         }
 
-        .button {
-            margin-bottom: 50px;
+        .button button {
+            cursor: pointer;
+            border: none;
+            border-radius: 20px;
+            background-color: green;
+            color: white;
+            padding: 10px 15px; 
+            font-size: 25px;
+            text-transform: uppercase
+        }
+
+        .button button:hover {
+            background-color: darkgreen;
         }
         
         .details{
             text-align: center; 
             font-family: "Courier New";
+            color: #FFFFFF;
+            margin-top: 70px;
+            
         }
 
         h1 {
             font-size: 50px; 
             font-family: "Monaco"; 
             margin-top: 100px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            color: #FFFFFF;
         }
         
         h6{
             font-size: 30px; 
             font-family: "Monaco"; 
-            margin-bottom: 10px;
+            color: #FFFFFF;
+            margin-bottom: 20px;
         }
 
     </style>
@@ -51,7 +68,7 @@
         <h6 style="text-align: center;">Get 3 chances to guess the  <br> building on campus.</h6>
         <div class ="button">
             <form action="/start_game">
-                <button type="submit" style="width: 100px; height: 30px; border-radius: 30px;">Start</button> 
+                <button type="submit">Start</button> 
             </form>
         </div>
         <div class="details">

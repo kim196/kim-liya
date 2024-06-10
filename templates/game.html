@@ -5,30 +5,75 @@
     <title>Game Page</title>
     <style>
         body {
-            text-align: center; /* Center align text */
-            height: 100vh; /* Full viewport height */
-            margin: 0; /* Remove default margin */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; 
+            align-items: center;
+            background-color: #C55050
+        }
+
+        h1 {
+            margin-top : 100px;
+            color: #FFFFFF;
+            font-family: "Monaco"; 
+        }
+        p{
+            color: #FFFFFF;
+            margin-top: -10px;
+            font-family: "Monaco"; 
         }
 
         img {
-            width: 500px; /* Adjust image width */
-            border: 2px solid black; /* Add border */
-            margin: 0 auto; /* Center horizontally */
+            width: 500px; 
+            border: 10px groove white; 
+            margin-top: 30px; 
+            margin-bottom: 20px;
         }
+
+        .button {
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 20px; /* Adjust this value to make it rounder */
+            font-size: 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-align: center; 
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .button:hover {
+            background-color: darkgreen;
+        }
+        form {
+            text-align: center; 
+        }
+        input[type="text"] {
+            text-align: center;
+            width: 200px; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the input horizontally */
+        }
+
+      
     </style>
     </head>
     <body>
-        <h1>You have 3 attempts to guess the building. </h1>
-        <p>Please use the official name found at the UMD Building Inventory </p> 
-        <a href="https://facilities.umd.edu/info-resources/building-inventory" target="_blank">Visit Building Inventory</a>
+
+        
+        <h1>You have 3 attempts to guess the building </h2>
+        <p>Please use the official name found at the <a href="https://facilities.umd.edu/info-resources/building-inventory" target="_blank">UMD Building Inventory</a> or your answer will be incorrect</p>
        
         
         <form action= "/feedback" method="post">
             <img src="{{ image_url }}" alt="Random Image">
             <br>
-            <label for="guess">Enter your guess:</label>
+            <label for="guess"></label>
             <input type="text" id="guess" name="guess">
-            <input type="submit" value="Submit">
+            <br>
+            <input type="submit" value="Submit" class="button">
         </form>
+
+       
+
     </body>
 </html>
