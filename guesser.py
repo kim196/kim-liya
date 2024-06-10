@@ -65,7 +65,7 @@ def feedback( ):
             img_url = url_for('static',filename=f'images/{location_img}')
             return render_template("try_again.html", image_url=img_url, num_attempts = 4 - attempts)
         else:
-            return render_template('/game_over')
+            return render_template('game_over.html', location = location)
     else: 
         elapsed_time = round(time.time() - start_time, 2)
         return render_template("report.html", num_attempts = attempts, elapsed_time=elapsed_time)
